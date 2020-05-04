@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CalculadoraForm
-from equipamentos.models import Irradiacao
+from equipamentos.models import Irradiacao, Modulo_fotovoltaico, Inversor_fotovoltaico
 from .models import Resultado
 
 def calculadora(request):
@@ -37,14 +37,18 @@ def resultados(request):
     #Inserindo no resultado
     resultado = potencia_pico
 
-    #Pegando a potência do painel
-    potencia_painel = int(request.POST['potencia_painel'])
+    #Pegando a potência do módulo
+    modulo= request.POST['modulo']
+    modulo_valor = Modulo_fotovoltaico.objects.filter(id=modulo)
+    modulo_valor = int(modulo_valor[0].pot_nom_maxima)
+    print(modulo_valor)
 
     #Calculando o número de módulos
-    numero_modulos = round((potencia_pico * 1000) / potencia_painel, 0)
+    numero_modulos = round((potencia_pico * 1000) / modulo_valor, 0)
 
     resumo = {
         'numero_modulos':numero_modulos,
+        'modulo_valor':modulo_valor,
         'consumo_medio':consumo_medio,
         'resultado':resultado
     }    
