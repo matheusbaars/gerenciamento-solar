@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Fabricante</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Potência (W)</th>
+                        <th scope="col">Atualizar</th>
+                        <th scope="col">Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for inversor in inversores %}
+                        <tr>
+                            <td scope="row">{{ inversor.fabricante }}</td>
+                            <td scope="row">{{ inversor.modelo }}</td>
+                            <td scope="row">{{ inversor.pot_pico }}</td> 
+                            <td><a href="{% url 'atualizar_inversor' inversor.id %}"><i class="fas fa-user-edit"></i></a></td>
+                            <td><a href="{% url 'deletar_inversor' inversor.id %}"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+        <a href="{% url 'registrar_inversor' %}">Registrar Inversor</a>
+    </div>
+</div>
+{% endblock %}

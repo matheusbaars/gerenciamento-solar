@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Janeiro</th>
+                        <th scope="col">Fevereiro</th>
+                        <th scope="col">Março</th>
+                        <th scope="col">Abril</th>
+                        <th scope="col">Maio</th>
+                        <th scope="col">Junho</th>
+                        <th scope="col">Julho</th>
+                        <th scope="col">Agosto</th>
+                        <th scope="col">Setembro</th>
+                        <th scope="col">Outubro</th>
+                        <th scope="col">Novembro</th>
+                        <th scope="col">Dezembro</th>
+                        <th scope="col">Média</th>
+                        <th scope="col">Atualizar</th>
+                        <th scope="col">Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for irradiacao in irradiacao %}
+                        <tr>
+                            <td scope="row">{{ irradiacao.cidade }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_janeiro }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_fevereiro }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_marco }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_abril }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_maio }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_junho }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_julho }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_agosto }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_setembro }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_outubro }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_novembro }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_dezembro }}</td>
+                            <td scope="row">{{ irradiacao.irradiacao_media }}</td>
+                            <td><a href="{% url 'atualizar_irradiacao' irradiacao.id %}"><i class="fas fa-user-edit"></i></a></td>
+                            <td><a href="{% url 'deletar_irradiacao' irradiacao.id %}"><i class="fas fa-trash-alt"></i></a></td>
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+        <a href="{% url 'registrar_irradiacao' %}">Registrar Irradiação</a>
+    </div>
+</div>
+{% endblock %}

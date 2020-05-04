@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Fabricante</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Potência</th>
+                        <th scope="col">Atualizar</th>
+                        <th scope="col">Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for modulo in modulos %}
+                        <tr>
+                            <td scope="row">{{ modulo.fabricante }}</td>
+                            <td scope="row">{{ modulo.modelo }}</td>
+                            <td scope="row">{{ modulo.pot_nom_maxima }}</td> 
+                            <td><a href="{% url 'atualizar_modulo_fotovoltaico' modulo.id %}"><i class="fas fa-user-edit"></i></a></td>
+                            <td><a href="{% url 'deletar_modulo_fotovoltaico' modulo.id %}"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+        <a href="{% url 'registrar_modulo_fotovoltaico' %}">Registrar Módulo</a>
+    </div>
+</div>
+{% endblock %}
