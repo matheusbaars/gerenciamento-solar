@@ -16,4 +16,4 @@ class CalculadoraForm(forms.Form):
     irradiacao = forms.ModelChoiceField(queryset=Irradiacao.objects.all(), initial='0')
     modulo = forms.ModelChoiceField(queryset=Modulo_fotovoltaico.objects.all(), initial='0')
     #inversor = forms.ModelChoiceField(queryset=Inversor_fotovoltaico.objects.all(), initial='0')
-    #potencia_painel = forms.IntegerField(label='Potência')
+    

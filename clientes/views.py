@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from .models import Cliente
 from .forms import ClienteForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def registrar_cliente(request):
     form = ClienteForm(request.POST or None, request.FILES or None)
 
@@ -11,10 +13,12 @@ def registrar_cliente(request):
         return redirect('clientes_registrados')
     return render(request,'registrar_cliente.html', {'form':form})
 
+@login_required
 def clientes_registrados(request):
     clientes = Cliente.objects.all()
     return render(request, 'clientes_registrados.html', {'clientes': clientes})
 
+@login_required
 def atualizar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     form = ClienteForm(request.POST or None, request.FILES or None, instance=cliente)
@@ -25,6 +29,7 @@ def atualizar_cliente(request, id):
     
     return render(request, 'registrar_cliente.html', {'form':form})
 
+@login_required
 def deletar_cliente(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     form = ClienteForm(request.POST or None, request.FILES or None, instance=cliente)

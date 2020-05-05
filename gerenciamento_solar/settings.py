@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'usuarios',
     'calculadora',
     'equipamentos',
     'crispy_forms',
@@ -132,3 +133,6 @@ STATICFILES_DIRS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = 'logado'

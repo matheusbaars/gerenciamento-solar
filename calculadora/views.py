@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CalculadoraForm
 from equipamentos.models import Irradiacao, Modulo_fotovoltaico, Inversor_fotovoltaico
 from .models import Resultado
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def calculadora(request):
     form = CalculadoraForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
@@ -11,6 +13,7 @@ def calculadora(request):
             return redirect('resultados')
     return render(request, 'calculadora.html', {'form':form})
 
+@login_required
 def resultados(request):
     
     #Pegando o custo de disponibilidade
