@@ -59,37 +59,38 @@
             {% endif %}
             
             <br>
-            <h1>Página de serviços</h1>
             <div class="container">
                 <div class="card-deck">
                     <div class="card" style="width: 18rem;">
-                        <img src="{% static 'img/calculadora.png' %}" class="card-img-top" alt="...">
+                        <img src="{% static 'img/irradiacao.png' %}" class="card-img-top" alt="...">
                         <div class="card-body">
-                        <h5 class="card-title">Calculadora rápida</h5>
-                        <p class="card-text">Faça cálculos preliminares aqui.</p>
-                        <a href="{% url 'calculadora' %}" class="btn btn-primary">Ir para calculadora rápida</a>
+                        <h5 class="card-title">Banco de irradiação</h5>
+                        <p class="card-text">Registre a irradiação das cidades aqui.</p>
+                        <a href="{% url 'registrar_irradiacao' %}" class="btn btn-primary">Ir para banco de irradiação</a>
                         </div>
                     </div>
                     
                     <div class="card" style="width: 18rem;">
-                        <img src="{% static 'img/clientes.png' %}" class="card-img-top" alt="...">
+                        <img src="{% static 'img/modulos.jpg' %}" class="card-img-top" alt="...">
                         <div class="card-body">
-                        <h5 class="card-title">Meus clientes</h5>
-                        <p class="card-text">Informações dos clientes registrados.</p>
-                        <a href="{% url 'clientes_registrados' %}" class="btn btn-primary">Ir para página dos clientes</a>
+                        <h5 class="card-title">Banco de módulos fotovoltaicos</h5>
+                        <p class="card-text">Registre um módulo fotovoltaico.</p>
+                        <a href="{% url 'registrar_modulo_fotovoltaico' %}" class="btn btn-primary">Ir para banco de módulos</a>
                         </div>
                     </div>
 
                     <div class="card" style="width: 18rem;">
-                        <img src="{% static 'img/database.png' %}" class="card-img-top" alt="...">
+                        <img src="{% static 'img/inversor.jpg' %}" class="card-img-top" alt="...">
                         <div class="card-body">
-                        <h5 class="card-title">Banco de dados</h5>
-                        <p class="card-text">Registre módulos fotovoltaicos, inversores e irradiação de cidades.</p>
-                        <a href="{% url 'database' %}" class="btn btn-primary">Ir para banco de dados</a>
+                        <h5 class="card-title">Banco de inversor</h5>
+                        <p class="card-text">Registre um inversor.</p>
+                        <a href="{% url 'registrar_inversor' %}" class="btn btn-primary">Ir para banco de inversores</a>
                         </div>
                     </div>
                 </div>
             </div> 
+            <br>
+            <a href="{% url 'logado' %}"><button class="btn btn-primary">Voltar</button></a>
         </div>
-    </div>
 </body>
+  

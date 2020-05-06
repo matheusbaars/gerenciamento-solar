@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+{% include 'partials/_menu_logado.html' %}
 <div style="background:transparent !important" class="jumbotron jumbotron-fluid">
     <div class="container">
         <div class="row">
@@ -28,6 +29,8 @@
             </table>
         </div>
         <a href="{% url 'registrar_cliente' %}">Registrar cliente</a>
+        <a href="{% url 'logado' %}"><button class="btn btn-danger">Voltar</button></a>
+
     </div>
 </div>
         

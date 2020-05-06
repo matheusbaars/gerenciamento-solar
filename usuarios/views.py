@@ -8,3 +8,6 @@ def logado(request):
 def my_logout(request):
     logout(request)
     return render(request, 'index.html')
+
+def database(request):
+    return render(request, 'database.html')

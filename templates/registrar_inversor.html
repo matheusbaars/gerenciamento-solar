@@ -3,9 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% include 'partials/_menu_logado.html' %}
+    <br>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
+    <br>
+    <a href="{% url 'database' %}"><button class="btn btn-danger">Voltar</button></a>
 {% endblock %}
