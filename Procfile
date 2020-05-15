@@ -1,1 +1,1 @@
-web: gunicorn gerenciamento_solar.wsgi --log-file -
+web: gunicorn website.wsgi --log-file -
