@@ -4,9 +4,6 @@ from equipamentos.models import Irradiacao, Modulo_fotovoltaico, Inversor_fotovo
 from temperatura.models import Temperatura
 from .models import Resultado
 from django.contrib.auth.decorators import login_required
-import matplotlib.pyplot as plt
-from pylab import figure, axes, pie, title
-from matplotlib.backends.backend_agg import FigureCanvasAgg
 import reportlab
 import io
 from django.http import FileResponse
