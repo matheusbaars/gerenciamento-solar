@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['gerenciamento-solar.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'temperatura',
     'usuarios',
     'calculadora',
     'equipamentos',

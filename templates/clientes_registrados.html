@@ -24,8 +24,9 @@
                             <td scope="row">{{ cliente.email }}</td>
                             <td><a href="{% url 'atualizar_cliente' cliente.id %}"><i class="fas fa-user-edit"></i></a></td>
                             <td><a href="{% url 'deletar_cliente' cliente.id %}"><i class="fas fa-trash-alt"></i></a></td>
-                            
                         </tr>
+                        {% empty %}
+                            <p>Nenhum cliente adicionado. Para adicionar clique em Registrar cliente</p>
                     {% endfor %}
                 </tbody>
             </table>

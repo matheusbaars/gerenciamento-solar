@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_menu_logado.html' %}
+<div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Janeiro</th>
+                        <th scope="col">Fevereiro</th>
+                        <th scope="col">Março</th>
+                        <th scope="col">Abril</th>
+                        <th scope="col">Maio</th>
+                        <th scope="col">Junho</th>
+                        <th scope="col">Julho</th>
+                        <th scope="col">Agosto</th>
+                        <th scope="col">Setembro</th>
+                        <th scope="col">Outubro</th>
+                        <th scope="col">Novembro</th>
+                        <th scope="col">Dezembro</th>
+                        <th scope="col">Média</th>
+                        <th scope="col">Atualizar</th>
+                        <th scope="col">Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for temperatura in temperaturas %}
+                        <tr>
+                            <td scope="row">{{ temperatura.cidade }}</td>
+                            <td scope="row">{{ temperatura.temperatura_janeiro }}</td>
+                            <td scope="row">{{ temperatura.temperatura_fevereiro }}</td>
+                            <td scope="row">{{ temperatura.temperatura_marco }}</td>
+                            <td scope="row">{{ temperatura.temperatura_abril }}</td>
+                            <td scope="row">{{ temperatura.temperatura_maio }}</td>
+                            <td scope="row">{{ temperatura.temperatura_junho }}</td>
+                            <td scope="row">{{ temperatura.temperatura_julho }}</td>
+                            <td scope="row">{{ temperatura.temperatura_agosto }}</td>
+                            <td scope="row">{{ temperatura.temperatura_setembro }}</td>
+                            <td scope="row">{{ temperatura.temperatura_outubro }}</td>
+                            <td scope="row">{{ temperatura.temperatura_novembro }}</td>
+                            <td scope="row">{{ temperatura.temperatura_dezembro }}</td>
+                            <td scope="row">{{ temperatura.temperatura_media }}</td>
+                            <td><a href="{% url 'atualizar_temperatura' temperatura.id %}"><i class="fas fa-user-edit"></i></a></td>
+                            <td><a href="{% url 'deletar_temperatura' temperatura.id %}"><i class="fas fa-trash-alt"></i></a></td>
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+        <a href="{% url 'registrar_temperatura' %}">Registrar temperatura</a>
+        <a href="{% url 'database' %}"><button class="btn btn-danger">Voltar</button></a>
+    </div>
+</div>
+{% endblock %}

@@ -1,13 +1,9 @@
-.jumbotron {
-    background: white;
+.imagem-carrossel {
+    object-fit: cover;
+    height: 400px;
 }
 
-
-h1 {
+#footer{
     color: blue;
-}
-
-#footer {
     position: fixed;
-    color: brown;
 }

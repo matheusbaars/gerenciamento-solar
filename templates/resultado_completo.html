@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_menu_logado.html' %} 
+    <br>
+    <div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>Página de Resultados</h1>
+            <br>
+            <br>
+            <div class="row">
+            <h2>Informações de módulo</h2>
+            <br>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Potência do módulo (Wp)</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Potência pico (kWp)</th>
+                        <th scope="col">Área mínima necessária (m2)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td scope="row">{{ modulo_modelo }}</td>
+                    <td scope="row">{{ modulo_potencia }}</td>
+                    <td scope="row">{{ numero_de_modulos }}</td>
+                    <td scope="row">{{ nova_potencia_pico }}</td>
+                    <td scope="row">{{ modulos_area_total }}</td>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+    
+    <div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <h2>Informações de geração (kWh)</h2>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Janeiro</th>
+                            <th scope="col">Fevereiro</th>
+                            <th scope="col">Março</th>
+                            <th scope="col">Abril</th>
+                            <th scope="col">Maio</th>
+                            <th scope="col">Junho</th>
+                            <th scope="col">Julho</th>
+                            <th scope="col">Agosto</th>
+                            <th scope="col">Setembro</th>
+                            <th scope="col">Outubro</th>
+                            <th scope="col">Novembro</th>
+                            <th scope="col">Dezembro</th>
+                            <th scope="col">Média</th>
+                            <th scope="col">Geração anual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for energia in energia_gerada_final %}  
+                            <td scope="row">{{ energia }}</td> 
+                        {% endfor %}
+                            <td scope="row">{{ geracao_anual }}</td>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+    <div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <h2>Ganho em reais</h2>
+                <br>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Janeiro</th>
+                        <th scope="col">Fevereiro</th>
+                        <th scope="col">Março</th>
+                        <th scope="col">Abril</th>
+                        <th scope="col">Maio</th>
+                        <th scope="col">Junho</th>
+                        <th scope="col">Julho</th>
+                        <th scope="col">Agosto</th>
+                        <th scope="col">Setembro</th>
+                        <th scope="col">Outubro</th>
+                        <th scope="col">Novembro</th>
+                        <th scope="col">Dezembro</th>
+                        <th scope="col">Média</th>
+                        <th scope="col">Ganho anual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ganho in arrecadacao_mensal %}  
+                        <td scope="row">{{ ganho }}</td> 
+                    {% endfor %}
+                        <td scope="row">{{ ganho_anual }}</td>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <p>Perdas : {{ perdas }}%</p>
+    <br>
+    <br>
+    <h1>Gráficos</h1>
+    <br>
+    <h2>Geração mensal</h2>
+    <br>
+    <canvas id="GeracaoEnergia"></canvas>
+    <br>
+    <br>
+    <h2>Análise financeira</h2>
+    <br>
+    <p>Tarifa: {{ tarifa }} reais</p>
+    <br>
+    <canvas id="Ganho por mês"></canvas>
+    <br>
+
+    
+    <a href="{% url 'gera_relatorio' %}"><button class="btn btn-default pull-right btn-primary" name="pdf" type="submit">Baixar relatório</button></a>
+    
+    
+    <script>
+        var ctx = document.getElementById('GeracaoEnergia').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+    
+            // The data for our dataset
+            data: {
+                labels: {{ meses_ano|safe }},
+                datasets: [{
+                    label: 'Geração anual',
+                    backgroundColor: 'rgb(0, 127, 255)',
+                    borderColor: 'rgb(0, 127, 255)',
+                    data: {{ energia_gerada_final }}
+                }]
+            },
+    
+            // Configuration options go here
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'kWh'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+<script>
+    var ctx = document.getElementById('Ganho por mês').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: {{ meses_ano|safe }},
+            datasets: [{
+                label: 'Ganho mensal',
+                backgroundColor: 'rgb(0, 127, 255)',
+                borderColor: 'rgb(0, 127, 255)',
+                data: {{ arrecadacao_mensal }}
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Reais'
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% endblock %}

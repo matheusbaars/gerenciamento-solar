@@ -3,7 +3,8 @@
 
 {% block content %}
 {% include 'partials/_menu_logado.html' %}
-    <div style="background:transparent !important" class="jumbotron jumbotron-fluid">
+
+        <br>
         <div class="container">
             {% if user.is_authenticated %}
                 <p>Olá, {{ user.username }}</p>
@@ -41,8 +42,17 @@
                         <a href="{% url 'database' %}" class="btn btn-primary">Ir para banco de dados</a>
                         </div>
                     </div>
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'img/database.png' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Calculadora completa</h5>
+                        <p class="card-text">Realize seus cálculos mais completos aqui.</p>
+                        <a href="{% url 'calculadora_completa' %}" class="btn btn-primary">Ir para calculadora completa</a>
+                        </div>
+                    </div>
                 </div>
             </div> 
         </div>
-    </div>
+    
 {% endblock %}
